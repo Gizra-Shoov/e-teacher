@@ -65,7 +65,23 @@ describe('Visual monitor testing', function() {
       .webdrivercss(testName + '.homepage', {
         name: '1',
         hide:
-          [],
+          [
+            'body > center > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a:nth-child(1)'
+          ],
+        screenWidth: selectedCaps == 'chrome' ? [1200] : undefined,
+      }, resultsCallback)
+      .call(done);
+  });
+
+  it('should show the home page',function(done) {
+    client
+      .url('http://highwaytoenglish.com')
+      .pause(5000)
+      .webdrivercss(testName + '.highwaytoenglish', {
+        name: '1',
+        hide:
+          [
+          ],
         screenWidth: selectedCaps == 'chrome' ? [1200] : undefined,
       }, resultsCallback)
       .call(done);
