@@ -35,4 +35,13 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   public function iShouldNotHaveAccessToThePage() {
     $this->assertSession()->statusCodeEquals('403');
   }
+
+  /**
+   * @Given I am on login page
+   */
+  public function iAmOnLoginPage()
+  {
+    $this->getSession()->visit('https://student.eteachergroup.com/Login?ReturnUrl=%2f');
+    sleep(5);
+  }
 }
