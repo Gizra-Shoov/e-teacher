@@ -61,8 +61,7 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   /**
    * @When I visit the student personal area page
    */
-  public function iVisitTheStudentPersonalAreaPage2()
-  {
+  public function iVisitTheStudentPersonalAreaPage2() {
     $this->getSession()->visit('https://student.eteachergroup.com/Login?ReturnUrl=%2f');
 
     $element = $this->getSession()->getPage();
