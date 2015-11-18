@@ -5,9 +5,6 @@ Feature: Login
 
   @javascript
   Scenario: Visit the login area page
-    Given I am on login page
-    When  I fill in "EmailOrUsername" with "boaz@eteachergroup.com"
-    And   I fill in "Password" with "Zaq12wsx"
-    And   I press "Go!"
-    Then  I should see "choose an account"
-
+    Given  I login with user "boaz"
+    When   I visit the student personal area page
+    Then   I should see "Binnun Boaz"

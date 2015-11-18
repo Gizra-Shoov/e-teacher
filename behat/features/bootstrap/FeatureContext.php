@@ -37,11 +37,46 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   }
 
   /**
-   * @Given I am on login page
+   * Login a user to the site.
+   *
+   * @param $name
+   *   The user name.
    */
-  public function iAmOnLoginPage()
+  private function _login($name) {
+    if ($name == "boaz") {
+      $this->user = "boaz@eteachergroup.com";
+      $this->password = "Zaq12wsx";
+    }
+  }
+
+  /**
+   * @Given I login with user :arg1
+   */
+  public function iLoginWithUser2($name)
+  {
+    $this->_login($name);
+  }
+
+
+  /**
+   * @When I visit the student personal area page
+   */
+  public function iVisitTheStudentPersonalAreaPage2()
   {
     $this->getSession()->visit('https://student.eteachergroup.com/Login?ReturnUrl=%2f');
-    sleep(5);
+
+    $element = $this->getSession()->getPage();
+    $element->fillField('EmailOrUsername', $this->user);
+    sleep(3);
+    $element->fillField('Password', $this->password);
+    sleep(3);
+    $submit = $element->find('css',"#goButton input");
+
+    if (empty($submit)) {
+      throw new \Exception(sprintf("No submit button at %s", $this->getSession()->getCurrentUrl()));
+    }
+
+    // Log in.
+    $submit->click();
   }
 }
