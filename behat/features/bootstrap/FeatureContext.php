@@ -76,7 +76,13 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
       throw new \Exception(sprintf("No submit button at %s", $this->getSession()->getCurrentUrl()));
     }
 
+    $this->clear();
     // Log in.
     $submit->click();
+  }
+
+  public function clear() {
+    $this->user = "";
+    $this->password = "";
   }
 }
